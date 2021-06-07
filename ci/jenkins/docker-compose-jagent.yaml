@@ -6,7 +6,7 @@ services:
         user: "root"
         environment: 
             JENKINS_URL: "http://192.168.88.248:8080"
-            JENKINS_SECRET: "0df9bbffe835a90291cced20bfc5e670663f50740cc5d6e712928a3eb90795af"
+            JENKINS_SECRET: "0fbb25bd5554de5585555243f0ad20086a58013b60bbfebc5d6397a11cb82372"
             JENKINS_AGENT_NAME: "agent1"
             JENKINS_AGENT_WORKDIR: "/var/jenkins_home"
         restart: "always"
@@ -19,7 +19,7 @@ services:
         user: "root"
         environment: 
             JENKINS_URL: "http://192.168.88.248:8080"
-            JENKINS_SECRET: "85be5581b0876298c611f4d51e965bc880578f4aaf61c93d3a9b2356910bf502"
+            JENKINS_SECRET: "de08ecb0388e29a27917f09bfa296fc22e875c6eb4b7fa68d5b3e61778be1ed6"
             JENKINS_AGENT_NAME: "agent2"
             JENKINS_AGENT_WORKDIR: "/var/jenkins_home"
         restart: "always"

@@ -6,7 +6,7 @@ pipeline {
             parallel {
                 stage('sim1') {
                     steps {
-                        build job: 'load-example',
+                        build job: 'load-one',
                          parameters: [
                             agentParameter(name: 'agentName', value: 'agent1')
                          ]
@@ -14,7 +14,7 @@ pipeline {
                 }
                 stage('sim2') {
                     steps {
-                        build job: 'load-example-two',
+                        build job: 'load-two',
                         parameters: [
                             agentParameter(name: 'agentName', value: 'agent1')
                         ]
