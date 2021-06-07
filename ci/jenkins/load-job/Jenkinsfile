@@ -13,6 +13,7 @@ pipeline {
         stage('Build') {
             agent {label '${agentName}'}
             steps {
+                cleanWs()
                 // Get some code from a GitHub repository
                 git branch: 'master',
                     credentialsId: 'GitHubAcc',

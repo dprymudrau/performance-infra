@@ -27,6 +27,7 @@ pipeline {
         stage('Downloading Reports') {
             steps {
                 agent {label 'agent1'}
+                cleanWs()
                 git branch: 'master',
                     credentialsId: 'GitHubAcc',
                     url: 'https://github.com/dprymudrau/gatling-example.git'
