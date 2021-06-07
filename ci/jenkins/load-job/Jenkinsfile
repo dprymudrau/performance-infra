@@ -1,9 +1,9 @@
 pipeline {
     agent {label params: ['agentName']}
 
-    parameters {
-        string(name: 'agentName', defaultValue: 'agent1', description: 'Agent')
-      }
+    parameters{
+          agentParameter name:'agentName'
+     }
     
     options {
         ansiColor('xterm')
