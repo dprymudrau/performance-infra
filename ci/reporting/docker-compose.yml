@@ -1,0 +1,16 @@
+services:
+  influxdb:
+    build: influx
+    ports:
+      - '8086:8086'
+      - '2003:2003'
+  grafana:
+    build: grafana
+    environment:
+      GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-worldmap-panel,grafana-piechart-panel
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    links:
+      - influxdb
+    ports:
+      - '3000:3000'
