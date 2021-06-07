@@ -9,7 +9,7 @@ pipeline {
                     steps {
                         build job: 'load-example',
                          parameters: [
-                            string(name:'agentName', value:'agent1')
+                            agentParameter(name: 'agentName' value: 'agent1')
                          ]
                     }
                 }
@@ -17,7 +17,7 @@ pipeline {
                     steps {
                         build job: 'load-example-two',
                         parameters: [
-                            string(name:'agentName', value:'agent2')
+                            agentParameter(name: 'agentName' value: 'agent1')
                         ]
                     }
                 }
