@@ -11,7 +11,7 @@ pipeline {
 
     stages {
         stage('Build') {
-            node {label params: ['agentName']}
+            agent {label params: ['agentName']}
             steps {
                 cleanWs()
                 // Get some code from a GitHub repository
