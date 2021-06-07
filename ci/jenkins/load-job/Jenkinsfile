@@ -1,5 +1,9 @@
 pipeline {
-    agent {label 'agent1'}
+    agent none
+
+    parameters {
+        string(name: 'agentName', defaultValue: 'agent1', description: 'Agent')
+      }
     
     options {
         ansiColor('xterm')
@@ -7,6 +11,7 @@ pipeline {
 
     stages {
         stage('Build') {
+            agent {label '${agentName}'}
             steps {
                 // Get some code from a GitHub repository
                 git branch: 'master',

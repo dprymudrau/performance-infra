@@ -5,13 +5,20 @@ pipeline {
         stage('Simulation') {
             parallel {
                 stage('sim1') {
+                agent{label 'agent1'}
                     steps {
-                        build 'partial-load-one'
+                        build job: 'load-example',
+                         parameters: [
+                            string(name:'agentName', value:'agent1')
+                         ]
                     }
                 }
                 stage('sim2') {
                     steps {
-                        build 'partial-load-two'
+                        build job: 'load-example-two',
+                        parameters: [
+                            string(name:'agentName', value:'agent2')
+                        ]
                     }
                 }
             }
@@ -19,6 +26,7 @@ pipeline {
         
         stage('Downloading Reports') {
             steps {
+                agent {label 'agent1'}
                 git branch: 'master',
                     credentialsId: 'GitHubAcc',
                     url: 'https://github.com/dprymudrau/gatling-example.git'
@@ -28,8 +36,16 @@ pipeline {
         
         stage('Generating Report') {
             steps {
+                agent {label 'agent1'}
                 sh "sbt Gatling / generateReport"
             }
+        }
+
+        post {
+          // Archive the log file.
+          success {
+            archiveArtifacts 'target/gatling/**'
+          }
         }
     }
 }
