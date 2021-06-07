@@ -39,13 +39,14 @@ pipeline {
                 agent {label 'agent1'}
                 sh "sbt Gatling / generateReport"
             }
+            post {
+               // Archive the log file.
+               success {
+                 archiveArtifacts 'target/gatling/**'
+               }
+            }
         }
 
-        post {
-          // Archive the log file.
-          success {
-            archiveArtifacts 'target/gatling/**'
-          }
-        }
+
     }
 }
