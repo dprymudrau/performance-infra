@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+    jmaster:
+        image: "jenkins/jenkins:lts-jdk11"
+        container_name: "jenkins_master"
+        user: "root"
+        restart: "always"
+        volumes:
+            - "$HOME/jenkins_home:/var/jenkins_home"
+        ports:
+            - "8080:8080"
+            - "50000:50000"

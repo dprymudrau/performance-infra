@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+    jagent1:
+        build: "."
+        container_name: "agent1"
+        user: "root"
+        environment: 
+            JENKINS_URL: "http://192.168.88.248:8080"
+            JENKINS_SECRET: "0df9bbffe835a90291cced20bfc5e670663f50740cc5d6e712928a3eb90795af"
+            JENKINS_AGENT_NAME: "agent1"
+            JENKINS_AGENT_WORKDIR: "/var/jenkins_home"
+        restart: "always"
+        volumes: 
+            - "$HOME/jnlp_agent1:/var/jenkins_home"
+
+    jagent2:
+        build: "."
+        container_name: "agent2"
+        user: "root"
+        environment: 
+            JENKINS_URL: "http://192.168.88.248:8080"
+            JENKINS_SECRET: "85be5581b0876298c611f4d51e965bc880578f4aaf61c93d3a9b2356910bf502"
+            JENKINS_AGENT_NAME: "agent2"
+            JENKINS_AGENT_WORKDIR: "/var/jenkins_home"
+        restart: "always"
+        volumes: 
+            - "$HOME/jnlp_agent2:/var/jenkins_home"

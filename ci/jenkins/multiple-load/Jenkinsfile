@@ -1,0 +1,35 @@
+pipeline {
+    agent {label 'master'}
+    
+    stages {
+        stage('Simulation') {
+            parallel {
+                stage('sim1') {
+                    steps {
+                        build 'partial-load-one'
+                    }
+                }
+                stage('sim2') {
+                    steps {
+                        build 'partial-load-two'
+                    }
+                }
+            }
+        }
+        
+        stage('Downloading Reports') {
+            steps {
+                git branch: 'master',
+                    credentialsId: 'GitHubAcc',
+                    url: 'https://github.com/dprymudrau/gatling-example.git'
+                sh "sbt -DjobNames=$JOB_NAMES 'runMain com.solvd.example.util.JenkinsUtil"
+            }
+        }
+        
+        stage('Generating Report') {
+            steps {
+                sh "sbt Gatling / generateReport"
+            }
+        }
+    }
+}
