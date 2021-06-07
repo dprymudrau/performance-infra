@@ -5,7 +5,6 @@ pipeline {
         stage('Simulation') {
             parallel {
                 stage('sim1') {
-                agent{label 'agent1'}
                     steps {
                         build job: 'load-example',
                          parameters: [
