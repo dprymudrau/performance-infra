@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent {label parameters['agentName']}
 
     parameters {
         string(name: 'agentName', defaultValue: 'agent1', description: 'Agent')
@@ -11,8 +11,6 @@ pipeline {
 
     stages {
         stage('Build') {
-            agentName="${agentName}"
-            agent {label agentName}
             steps {
                 cleanWs()
                 // Get some code from a GitHub repository
