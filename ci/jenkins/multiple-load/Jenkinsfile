@@ -30,14 +30,16 @@ pipeline {
                 git branch: 'master',
                     credentialsId: 'GitHubAcc',
                     url: 'https://github.com/dprymudrau/gatling-example.git'
-                sh "sbt -DjobNames=load-one,load-two 'runMain com.solvd.example.util.JenkinsUtil"
+                withCredentials([string(credentialsId: 'jcreds', variable: 'JENKINS_CREDS')]) {
+                    sh "sbt -DjobNames=load-one,load-two -Djcreds=${JENKINS_CREDS} 'runMain com.solvd.example.util.JenkinsUtil'"
+                }
             }
         }
         
         stage('Generating Report') {
             steps {
                 agent {label 'agent1'}
-                sh "sbt Gatling / generateReport"
+                sh "sbt 'Gatling / generateReport'"
             }
             post {
                // Archive the log file.
