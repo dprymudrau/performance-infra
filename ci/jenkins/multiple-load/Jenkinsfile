@@ -24,8 +24,8 @@ pipeline {
         }
         
         stage('Downloading Reports') {
+            agent {label 'agent1'}
             steps {
-                agent {label 'agent1'}
                 cleanWs()
                 git branch: 'master',
                     credentialsId: 'GitHubAcc',
@@ -37,8 +37,8 @@ pipeline {
         }
         
         stage('Generating Report') {
+            agent {label 'agent1'}
             steps {
-                agent {label 'agent1'}
                 sh "sbt 'Gatling / generateReport'"
             }
             post {
