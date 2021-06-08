@@ -30,7 +30,7 @@ pipeline {
                 git branch: 'master',
                     credentialsId: 'GitHubAcc',
                     url: 'https://github.com/dprymudrau/gatling-example.git'
-                sh "sbt -DjobNames=$JOB_NAMES 'runMain com.solvd.example.util.JenkinsUtil"
+                sh "sbt -DjobNames=load-one,load-two 'runMain com.solvd.example.util.JenkinsUtil"
             }
         }
         
