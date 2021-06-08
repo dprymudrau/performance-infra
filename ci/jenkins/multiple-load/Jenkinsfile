@@ -44,7 +44,7 @@ pipeline {
             post {
                // Archive the log file.
                success {
-                 archiveArtifacts 'target/gatling/**'
+                 archiveArtifacts artifacts: 'target/gatling/**', excludes: "target/gatling/*.log"
                }
             }
         }
