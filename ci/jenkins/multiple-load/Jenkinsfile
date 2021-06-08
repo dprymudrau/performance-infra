@@ -35,7 +35,7 @@ pipeline {
                     credentialsId: 'GitHubAcc',
                     url: 'https://github.com/dprymudrau/gatling-example.git'
                 withCredentials([string(credentialsId: 'jcreds', variable: 'JENKINS_CREDS')]) {
-                    sh "sbt -DjobNames=load-one,load-two -Djcreds=${JENKINS_CREDS} 'runMain com.solvd.example.util.JenkinsUtil'"
+                    sh "sbt -DjobNames=load-one,load-two -Djcreds=$JENKINS_CREDS 'runMain com.solvd.example.util.JenkinsUtil'"
                 }
             }
         }
