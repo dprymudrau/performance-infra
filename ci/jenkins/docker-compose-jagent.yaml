@@ -5,8 +5,8 @@ services:
         container_name: "agent1"
         user: "root"
         environment: 
-            JENKINS_URL: "http://192.168.88.248:8080"
-            JENKINS_SECRET: "0fbb25bd5554de5585555243f0ad20086a58013b60bbfebc5d6397a11cb82372"
+            JENKINS_URL: "http://192.168.0.16:8080"
+            JENKINS_SECRET: "7873ddafaf62263f3d753c19015b54825e765f997a10c78cba6a56f69fb2c73f"
             JENKINS_AGENT_NAME: "agent1"
             JENKINS_AGENT_WORKDIR: "/var/jenkins_home"
         restart: "always"
@@ -18,8 +18,8 @@ services:
         container_name: "agent2"
         user: "root"
         environment: 
-            JENKINS_URL: "http://192.168.88.248:8080"
-            JENKINS_SECRET: "de08ecb0388e29a27917f09bfa296fc22e875c6eb4b7fa68d5b3e61778be1ed6"
+            JENKINS_URL: "http://192.168.0.16:8080"
+            JENKINS_SECRET: "1f9fe857972b6d16f9b9496dc569d5fbf303a96155e29707b8b1c59f212628a6"
             JENKINS_AGENT_NAME: "agent2"
             JENKINS_AGENT_WORKDIR: "/var/jenkins_home"
         restart: "always"
