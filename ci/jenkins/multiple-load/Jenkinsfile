@@ -12,7 +12,7 @@ pipeline {
                     steps {
                         build job: 'load-one',
                          parameters: [
-                            agentParameter(name: 'agentName', value: 'agent1')
+                            agentParameter(name: 'agentName', value: 'agent2')
                          ]
                     }
                 }
@@ -20,7 +20,7 @@ pipeline {
                     steps {
                         build job: 'load-two',
                         parameters: [
-                            agentParameter(name: 'agentName', value: 'agent2')
+                            agentParameter(name: 'agentName', value: 'agent3')
                         ]
                     }
                 }
@@ -28,7 +28,7 @@ pipeline {
         }
         
         stage('Downloading Reports') {
-            agent {label 'agent1'}
+            agent {label 'agent2'}
             steps {
                 cleanWs()
                 git branch: 'master',
@@ -41,7 +41,7 @@ pipeline {
         }
         
         stage('Generating Report') {
-            agent {label 'agent1'}
+            agent {label 'agent2'}
             steps {
                 sh "sbt 'Gatling / generateReport'"
             }
