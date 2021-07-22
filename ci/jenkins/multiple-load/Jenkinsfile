@@ -37,13 +37,12 @@ pipeline {
                 }
                 sh "sbt 'Gatling / generateReport'"
             }
-        }
-
-        post {
-         // Archive the log file.
-            success {
-              archiveArtifacts artifacts: 'target/gatling/**', excludes: "target/gatling/*.log"
+            post {
+            // Archive the log file.
+               success {
+                 archiveArtifacts artifacts: 'target/gatling/**', excludes: "target/gatling/*.log"
+               }
             }
-         }
+        }
     }
 }
