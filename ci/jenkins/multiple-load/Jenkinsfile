@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage('Downloading Reports') {
+        stage('Generating Reports') {
             agent {label 'agent2'}
             steps {
                 cleanWs()
@@ -35,20 +35,15 @@ pipeline {
                 withCredentials([string(credentialsId: 'jcreds', variable: 'JENKINS_CREDS')]) {
                     sh "sbt -DjobNames=load-one,load-two -Djcreds=$JENKINS_CREDS 'runMain com.solvd.example.util.JenkinsUtil'"
                 }
+                sh "sbt 'Gatling / generateReport'"
             }
         }
 
-        stage('Generating Report') {
-            agent {label 'agent2'}
-            steps {
-                sh "sbt 'Gatling / generateReport'"
+        post {
+         // Archive the log file.
+            success {
+              archiveArtifacts artifacts: 'target/gatling/**', excludes: "target/gatling/*.log"
             }
-            post {
-               // Archive the log file.
-               success {
-                 archiveArtifacts artifacts: 'target/gatling/**', excludes: "target/gatling/*.log"
-               }
-            }
-        }
+         }
     }
 }
