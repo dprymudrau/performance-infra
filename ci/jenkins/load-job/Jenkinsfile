@@ -23,7 +23,7 @@ pipeline {
                     string(credentialsId: 'baseUrl', variable: 'BASE_URL'),
                     string(credentialsId: 'crypt', variable: 'CRYPT')
                     ]) {
-                    sh "sbt -DbaseUrl=$BASE_URL -Dcrypt=$CRYPT 'Gatling / testOnly com.solvd.example.simulation.Simulation'"
+                    sh "sbt -DbaseUrl=$BASE_URL -Dcrypt=$CRYPT 'Gatling / testOnly com.solvd.example.simulation.SimulationExample'"
                 }
 
             }
