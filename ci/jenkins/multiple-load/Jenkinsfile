@@ -1,10 +1,8 @@
 pipeline {
     agent none
-
     options {
         ansiColor('xterm')
     }
-    
     stages {
         stage('Simulation') {
             parallel {
@@ -12,7 +10,7 @@ pipeline {
                     steps {
                         build job: 'load-one',
                          parameters: [
-                            agentParameter(name: 'agentName', value: 'agent2')
+                            agentParameter(name: 'agentName', value: 'agent1')
                          ]
                     }
                 }
@@ -20,13 +18,13 @@ pipeline {
                     steps {
                         build job: 'load-two',
                         parameters: [
-                            agentParameter(name: 'agentName', value: 'agent3')
+                            agentParameter(name: 'agentName', value: 'agent2')
                         ]
                     }
                 }
             }
         }
-        
+
         stage('Downloading Reports') {
             agent {label 'agent2'}
             steps {
@@ -39,7 +37,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Generating Report') {
             agent {label 'agent2'}
             steps {
@@ -52,7 +50,5 @@ pipeline {
                }
             }
         }
-
-
     }
 }
